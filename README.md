@@ -20,7 +20,7 @@ Add this link to your dependencies: https://github.com/HalfstarDev/defwin/archiv
 
 ## Compatibility
 
-This extension works only on Windows. On other systems `defwin` will be `nil`, so you can safely handle multiplatform releases like this:
+This extension works only on Windows, with some features only working on Windows 11. On other systems `defwin` will be `nil`, so you can safely handle multiplatform releases like this:
 
 ```lua
 if defwin then
