@@ -1,0 +1,396 @@
+- name: defwin
+  type: table
+  desc: A Defold extension for advanced window features on Windows. Custom window shapes, window transparency, lock aspect ratio for resize, hook for custom function of close button, and flashing of the taskbar button.
+  members:
+
+  # ---------------------------------------------------------------------
+  # Transparency
+  # ---------------------------------------------------------------------
+
+  - name: set_alpha_color
+    type: function
+    desc: Set which color should be rendered transparent by the window, and removes the window border. The transparent areas will also be click-through.
+    parameters:
+    - name: r
+      type: number
+      optional: true
+      desc: Red component in [0.0, 1.0]. If omitted, the render clear color is used.
+    - name: g
+      type: number
+      optional: true
+      desc: Green component in [0.0, 1.0].
+    - name: b
+      type: number
+      optional: true
+      desc: Blue component in [0.0, 1.0].
+    returns:
+    - name: success
+      type: boolean
+      desc: true
+
+  - name: set_image_buffer
+    type: function
+    desc: Use an image instead of the default window contents, with pixels outside the image left transparent.
+    parameters:
+    - name: bytes_string
+      type: string
+      desc: Raw RGBA pixel data, e.g. from buffer.get_bytes(buf, hash("rgba"))
+    - name: width
+      type: number
+      desc: Width of the image buffer in pixels
+    - name: height
+      type: number
+      desc: Height of the image buffer in pixels
+    - name: flip
+      type: boolean
+      optional: true
+      desc: If true, the rows are flipped vertically (default false)
+    returns:
+    - name: success
+      type: boolean
+      desc: true if the image buffer was applied successfully
+
+  - name: set_alpha
+    type: function
+    desc: Set the transparency of the whole window, including the border. Can't be used together with set_alpha_color.
+    parameters:
+    - name: alpha
+      type: number
+      desc: Opacity in [0.0, 1.0]. 0.0 = fully transparent, 1.0 = fully opaque.
+
+  - name: set_borderless
+    type: function
+    desc: Remove or restore the window border.
+    parameters:
+    - name: enable
+      type: boolean
+      desc: true to remove the window border, false to restore it
+
+  - name: reset_alpha
+    type: function
+    desc: Remove the window transparency, restoring the original opaque window.
+
+  # ---------------------------------------------------------------------
+  # Close handling
+  # ---------------------------------------------------------------------
+
+  - name: set_close_listener
+    type: function
+    desc: Set a listener that is called instead of quitting the game when the close button is pressed.
+    parameters:
+    - name: listener
+      type: function
+      desc: Called when a close is requested. Pass nil to clear the listener and restore default close behaviour.
+      parameters:
+      - name: self
+        type: userdata
+
+  - name: set_close_delay
+    type: function
+    desc: Set the time after a close request until the game exits automatically.
+    parameters:
+    - name: delay
+      type: number
+      optional: true
+      desc: Time in seconds before the game exits. 0 closes as soon as the close button is pressed. Pass nil for no automatic close, leaving the close listener fully in control.
+
+  - name: set_close_sound_fadeout
+    type: function
+    desc: If enabled and a close delay is set, the master sound group gain is faded out over the delay duration until shutdown.
+    parameters:
+    - name: enable
+      type: boolean
+      desc: true to enable the sound fade-out on close
+
+  - name: quit
+    type: function
+    desc: Quit the game, respecting the configured close delay and sound fade-out settings.
+
+  - name: request_quit
+    type: function
+    desc: Request to quit the game, behaving as if the user pressed the close button or Alt+F4. Triggers the close listener and delay handling.
+
+  - name: cancel_close
+    type: function
+    desc: Cancel an in-progress close attempt. Until this is called again on a future close, further attempts to close the window will not re-trigger the listener or restart the delay.
+
+  # ---------------------------------------------------------------------
+  # Style
+  # ---------------------------------------------------------------------
+
+  - name: set_dark_mode
+    type: function
+    desc: Set the window border style to dark mode or light mode.
+    parameters:
+    - name: enable
+      type: boolean
+      desc: Set to dark mode on true, and to light mode on false
+
+  - name: get_dark_mode_preference
+    type: function
+    desc: Get the preference of the current user for dark mode or light mode.
+    returns:
+    - name: preference
+      type: bool|nil
+      desc: ´true´ if dark mode is preferred, ´false´ if light mode is preferred, and ´nil´ if the preference is unknown
+
+  - name: set_corners_rounded
+    type: function
+    desc: Set the corner style of the window frame to rounded, if available.
+
+  - name: set_corners_rounded_small
+    type: function
+    desc: Set the corner style of the window frame to slightly rounded, if available.
+
+  - name: set_corners_not_rounded
+    type: function
+    desc: Set the corner style of the window frame to not rounded.
+
+  - name: set_corners_default
+    type: function
+    desc: Set the corner style of the window frame to the default.
+
+  - name: set_border_color
+    type: function
+    desc: Set window border color.
+    parameters:
+    - name: r
+      type: number
+      optional: true
+      desc: Red component in [0.0, 1.0]. If omitted, the default color is used.
+    - name: g
+      type: number
+      optional: true
+      desc: Green component in [0.0, 1.0].
+    - name: b
+      type: number
+      optional: true
+      desc: Blue component in [0.0, 1.0].
+
+  - name: set_border_color_none
+    type: function
+    desc: Set the window border color to be transparent.
+
+  - name: set_caption_color
+    type: function
+    desc: Set window caption color.
+    parameters:
+    - name: r
+      type: number
+      optional: true
+      desc: Red component in [0.0, 1.0]. If omitted, the default color is used.
+    - name: g
+      type: number
+      optional: true
+      desc: Green component in [0.0, 1.0].
+    - name: b
+      type: number
+      optional: true
+      desc: Blue component in [0.0, 1.0].
+
+  - name: set_caption_text_color
+    type: function
+    desc: Set window caption text color.
+    parameters:
+    - name: r
+      type: number
+      optional: true
+      desc: Red component in [0.0, 1.0]. If omitted, the default color is used.
+    - name: g
+      type: number
+      optional: true
+      desc: Green component in [0.0, 1.0].
+    - name: b
+      type: number
+      optional: true
+      desc: Blue component in [0.0, 1.0].
+
+  - name: get_caption_color
+    type: function
+    desc: Get the opaque color of the window caption.
+    returns:
+    - name: color
+      type: vmath.vector4
+      desc: (r, g, b, 1) with r, g, b in [0.0, 1.0]
+
+  - name: set_rtl_layout
+    type: function
+    desc: Set window bar layout to right-to-left, affecting buttons, title, and icon.
+    parameters:
+    - name: enable
+      type: boolean
+      desc: Set window to RTL layout on true, and to LTR layout on false
+
+  - name: set_tool_window
+    type: function
+    desc: Turns the window into a tool window. Tool windows are not shown on taskbar and Alt-Tab, and have no minimize and maximize buttons or icon.
+    parameters:
+    - name: enable
+      type: boolean
+      desc: Set to tool window on true, and back to normal window on false
+
+  # ---------------------------------------------------------------------
+  # Resizing
+  # ---------------------------------------------------------------------
+
+  - name: lock_ratio
+    type: function
+    desc: Lock the aspect ratio of the window when the user drags its border.
+    parameters:
+    - name: ratio
+      type: number
+      optional: true
+      desc: The aspect ratio to lock (width / height). If omitted, the aspect ratio of the default resolution in game.project is used.
+
+  - name: unlock_ratio
+    type: function
+    desc: Remove the aspect ratio lock set by lock_ratio.
+
+  - name: set_minimum_window_size
+    type: function
+    desc: Set the minimum size a window is allowed to have when resized.
+    parameters:
+    - name: width
+      type: number
+      desc: Minimum width in pixels.
+    - name: height
+      type: number
+      optional: true
+      desc: Minimum height in pixels.
+
+  - name: fit_vertical
+    type: function
+    desc: Fit the window to the given aspect ratio by resizing only the height.
+    parameters:
+    - name: ratio
+      type: number
+      optional: true
+      desc: The aspect ratio to fit to (width / height). If omitted, the aspect ratio from the display size in game.project is used.
+
+  - name: fit_horizontal
+    type: function
+    desc: Fit the window to the given aspect ratio by resizing only the width.
+    parameters:
+    - name: ratio
+      type: number
+      optional: true
+      desc: The aspect ratio to fit to (width / height). If omitted, the aspect ratio from the display size in game.project is used.
+
+  - name: fit_grow
+    type: function
+    desc: Fit the window to the given aspect ratio by only growing the size in one direction.
+    parameters:
+    - name: ratio
+      type: number
+      optional: true
+      desc: The aspect ratio to fit to (width / height). If omitted, the aspect ratio from the display size in game.project is used.
+
+  - name: fit_shrink
+    type: function
+    desc: Fit the window to the given aspect ratio by only shrinking the size in one direction.
+    parameters:
+    - name: ratio
+      type: number
+      optional: true
+      desc: The aspect ratio to fit to (width / height). If omitted, the aspect ratio from the display size in game.project is used.
+
+  - name: fit_screen
+    type: function
+    desc: Reposition and resize the window so that no part of it is outside of the screen.
+
+  # ---------------------------------------------------------------------
+  # Taskbar
+  # ---------------------------------------------------------------------
+
+  - name: flash
+    type: function
+    desc: Flash the window a limited number of times.
+    parameters:
+    - name: taskbar
+      type: boolean
+      desc: Should the taskbar button flash
+    - name: caption
+      type: boolean
+      desc: Should the window caption flash
+    - name: count
+      type: number
+      optional: true
+      desc: How many times to flash (default 1)
+    - name: timeout
+      type: number
+      optional: true
+      desc: Time between flashes, in seconds (default platform cursor blink rate)
+
+  - name: start_flash
+    type: function
+    desc: Start flashing the window until manually stopped or until the window regains focus.
+    parameters:
+    - name: taskbar
+      type: boolean
+      desc: Should the taskbar button flash
+    - name: caption
+      type: boolean
+      desc: Should the window caption flash
+    - name: until_focused
+      type: boolean
+      desc: If true, focusing the window stops the flash. If false, it flashes until stop_flash() is called.
+    - name: timeout
+      type: number
+      optional: true
+      desc: Time between flashes, in seconds (default platform cursor blink rate)
+
+  - name: stop_flash
+    type: function
+    desc: Stop the window from flashing. As the current flash cycle still completes, it can take a few seconds to disappear.
+
+  - name: set_progress
+    type: function
+    desc: Set the progress bar on the taskbar button.
+    parameters:
+    - name: value
+      type: number
+      desc: Progress in [0.0, 1.0]
+
+  - name: set_progress_error
+    type: function
+    desc: Set the progress bar on the taskbar button to an error state, turning it red.
+
+  - name: set_progress_load
+    type: function
+    desc: Set the progress bar on the taskbar button to an indeterminate loading state.
+
+  - name: pause_progress
+    type: function
+    desc: Pauses the progress bar on the taskbar button, turning it yellow until a new value or state is set.
+
+  - name: hide_progress
+    type: function
+    desc: Hide the progress bar on the taskbar button, until a new value or state is set.
+
+  # ---------------------------------------------------------------------
+  # Drag
+  # ---------------------------------------------------------------------
+
+  - name: start_drag
+    type: function
+    desc: Start dragging the window along the cursor. Must be paired with repeated calls to update_drag() to have any effect.
+
+  - name: update_drag
+    type: function
+    desc: Update one frame of the window drag started with start_drag(). Should be called every frame (e.g. from an on_input or update callback) while dragging is active.
+
+  - name: stop_drag
+    type: function
+    desc: Stop dragging the window along the cursor.
+
+  # ---------------------------------------------------------------------
+  # Activity
+  # ---------------------------------------------------------------------
+
+  - name: prevent_sleep
+    type: function
+    desc: Keep the window active to prevent the system from going to sleep while enabled.
+    parameters:
+    - name: enable
+      type: boolean
+      desc: Prevent sleep if true, let system handle activity on false
