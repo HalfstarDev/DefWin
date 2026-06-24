@@ -16,7 +16,7 @@ A Defold extension for advanced window features on Windows.
 
 This asset can be added as a [library dependency](https://defold.com/manuals/libraries/#setting-up-library-dependencies) in your project.
 
-Add this link to your dependencies: https://github.com/HalfstarDev/defwin/archive/master.zip
+Add this link to your dependencies: https://github.com/HalfstarDev/DefWin/archive/master.zip
 
 ## Compatibility
 
