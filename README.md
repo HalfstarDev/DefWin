@@ -117,9 +117,9 @@ Set the window style to dark mode on true, and to light mode on false.
 Get the preference for dark mode of the current user. You can use it to apply dark mode to the window, or to use a dark theme by default in your game.
 
 return:
-* ´true´  if dark mode is preferred
-* ´false´ if light mode is preferred
-* ´nil´   if the preference is unknown
+* `true`  if dark mode is preferred
+* `false` if light mode is preferred
+* `nil`   if the preference is unknown
 
 ```lua
 local preference = defwin.get_dark_mode_preference()
@@ -159,7 +159,7 @@ defwin.set_corners_default()
 #### defwin.set_border_color(r, g, b)
 Set window border color, with RGB in [0.0, 1.0].
 
-´defwin.set_border_color(nil)´ for default color.
+`defwin.set_border_color(nil)` for default color.
 
 ```lua
 defwin.set_border_color(1.0, 0.0, 0.0)
@@ -175,7 +175,7 @@ defwin.set_border_color_none()
 #### defwin.set_caption_color(r, g, b)
 Set window caption color, with RGB in [0.0, 1.0].
 
-´defwin.set_caption_color(nil)´ for default color.
+`defwin.set_caption_color(nil)` for default color.
 
 ```lua
 defwin.set_caption_color(0.0, 1.0, 1.0)
@@ -184,7 +184,7 @@ defwin.set_caption_color(0.0, 1.0, 1.0)
 #### defwin.set_caption_text_color(r, g, b)
 Set window caption text color, with RGB in [0.0, 1.0].
 
-´defwin.set_caption_text_color(nil)´ for default color.
+`defwin.set_caption_text_color(nil)` for default color.
 
 ```lua
 defwin.set_caption_text_color(1.0, 0.0, 0.0)
@@ -193,7 +193,7 @@ defwin.set_caption_text_color(1.0, 0.0, 0.0)
 #### defwin.get_caption_color()
 Get the opaque color of the window caption.
 
-return: ´vmath.vector4 color = vmath.vector4(r, g, b, 1)´ with r, g, b in [0.0, 1.0]
+return: `vmath.vector4 color = vmath.vector4(r, g, b, 1)` with r, g, b in [0.0, 1.0]
 
 ```lua
 local color = defwin.get_caption_color()
