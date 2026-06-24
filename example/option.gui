@@ -1,0 +1,76 @@
+fonts {
+  name: "font"
+  font: "/example/font.font"
+}
+nodes {
+  type: TYPE_BOX
+  id: "option"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 30.0
+    y: 30.0
+  }
+  type: TYPE_BOX
+  id: "button"
+  parent: "option"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 20.0
+    y: 20.0
+  }
+  color {
+    x: 0.0
+    y: 0.5019608
+  }
+  type: TYPE_BOX
+  id: "picked"
+  parent: "option"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 30.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 800.0
+    y: 80.0
+  }
+  type: TYPE_TEXT
+  text: "Lock aspect ratio"
+  font: "font"
+  id: "text"
+  pivot: PIVOT_W
+  parent: "option"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -20.0
+  }
+  size {
+    x: 400.0
+    y: 40.0
+  }
+  type: TYPE_BOX
+  id: "click"
+  pivot: PIVOT_W
+  parent: "option"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

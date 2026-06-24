@@ -1,0 +1,45 @@
+images {
+  image: "/example/assets/images/drag_indicator.png"
+}
+images {
+  image: "/example/assets/images/close.png"
+}
+images {
+  image: "/example/assets/images/cancel.png"
+}
+images {
+  image: "/example/assets/images/opacity.png"
+}
+images {
+  image: "/example/assets/images/resize.png"
+}
+images {
+  image: "/example/assets/images/warning.png"
+}
+images {
+  image: "/example/assets/images/play_circle.png"
+}
+images {
+  image: "/example/assets/images/dark_mode.png"
+}
+images {
+  image: "/example/assets/images/light_mode.png"
+}
+images {
+  image: "/example/assets/images/corner_1.png"
+}
+images {
+  image: "/example/assets/images/corner_2.png"
+}
+images {
+  image: "/example/assets/images/corner_3.png"
+}
+images {
+  image: "/example/assets/images/download.png"
+}
+images {
+  image: "/example/assets/images/error.png"
+}
+images {
+  image: "/example/assets/images/stop_circle.png"
+}

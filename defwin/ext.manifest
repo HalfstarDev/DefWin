@@ -1,0 +1,6 @@
+name: "DefWin"
+
+platforms:
+    win32:
+        context:
+            libs: ["dwmapi.lib", "user32.lib", "gdi32.lib"]

@@ -1,0 +1,22 @@
+name: "main"
+instances {
+  id: "safealpha"
+  prototype: "/defwin/safealpha/safealpha.go"
+}
+scale_along_z: 0
+embedded_instances {
+  id: "example"
+  data: "components {\n"
+  "  id: \"example\"\n"
+  "  component: \"/example/example.gui\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"music\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/example/assets/Field of Anise (by Halfstar).ogg\\\"\\n"
+  "looping: 1\\n"
+  "gain: 0.9\\n"
+  "\"\n"
+  "}\n"
+  ""
+}

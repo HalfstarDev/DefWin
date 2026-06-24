@@ -1,0 +1,405 @@
+local WHITE = vmath.vector4(1, 1, 1, 1)
+local BLUE = vmath.vector4(0, 0.1, 0.9, 1)
+local LINEAR = gui.EASING_LINEAR
+
+local popup = false
+local slider_pressed = false
+local progress_handle = nil
+local buttons = {}
+
+local function show_popup()
+	local node = gui.get_node("popup")
+	gui.set_scale(node, vmath.vector3(0.2, 0.2, 1))
+	gui.animate(node, "scale", vmath.vector3(1, 1, 1), LINEAR, 0.15)
+	gui.animate(node, "color.w", 1, LINEAR, 0.15, 0, function()
+		popup = true
+	end)
+end
+
+local function close_popup()
+	if not defwin then return end
+	defwin.cancel_close()
+	local node = gui.get_node("popup")
+	gui.animate(node, "scale", vmath.vector3(0.2, 0.2, 1), LINEAR, 0.15)
+	gui.animate(node, "color.w", 0, LINEAR, 0.15, 0, function()
+		popup = false
+	end)
+end
+
+-- Lock aspect ratio to config
+function buttons.aspect_ratio_1()
+	if not defwin then return end
+	defwin.lock_ratio()
+	defwin.fit_grow()
+	defwin.fit_screen()
+	defwin.fit_shrink()
+end
+
+-- Lock aspect ratio to current
+function buttons.aspect_ratio_2()
+	if not defwin then return end
+	local width, height = window.get_size()
+	defwin.lock_ratio(width / height)
+end
+
+-- Lock aspect ratio to square
+function buttons.aspect_ratio_3()
+	if not defwin then return end
+	defwin.lock_ratio(1)
+	defwin.fit_shrink(1.0)
+end
+
+-- Unlock aspect ratio
+function buttons.aspect_ratio_4()
+	if not defwin then return end
+	defwin.unlock_ratio()
+end
+
+-- Popup on close
+function buttons.close_1()
+	if not defwin then return end
+	defwin.set_close_listener(show_popup)
+	defwin.set_close_delay(nil)
+	defwin.set_close_sound_fadeout(false)
+	defwin.cancel_close()
+end
+
+-- Delay and fadeout on close
+function buttons.close_2()
+	if not defwin then return end
+	local duration = 2
+	defwin.set_close_listener(function()
+		gui.animate(gui.get_node("black"), "color.w", 1, LINEAR, duration)
+	end)
+	defwin.set_close_delay(duration)
+	defwin.set_close_sound_fadeout(true)
+	defwin.cancel_close()
+end
+
+-- Quit on close
+function buttons.close_3()
+	if not defwin then return end
+	defwin.set_close_listener(nil)
+	defwin.set_close_delay(nil)
+	defwin.set_close_sound_fadeout(false)
+	defwin.cancel_close()
+end
+
+-- Disable close button
+function buttons.close_4()
+	if not defwin then return end
+	defwin.set_close_listener(function()
+		-- do nothing
+	end)
+	defwin.set_close_delay(nil)
+	defwin.set_close_sound_fadeout(false)
+	defwin.cancel_close()
+end
+
+-- Flash taskbar button
+function buttons.flash_1()
+	if not defwin then return end
+	defwin.flash(true, false, 2)
+end
+
+-- Flash caption 3x
+function buttons.flash_2()
+	if not defwin then return end
+	defwin.flash(false, true, 3)
+end
+
+-- Start desktop widget mode
+function buttons.transparency_1()
+	if not defwin then return end
+	defwin.set_alpha_color()
+	gui.set_position(gui.get_node("slider_handle"), vmath.vector3(200, 0, 0))
+end
+
+-- End desktop widget mode
+function buttons.transparency_2()
+	if not defwin then return end
+	defwin.reset_alpha()
+	gui.set_position(gui.get_node("slider_handle"), vmath.vector3(200, 0, 0))
+end
+
+local function apply_dark_mode(enable)
+	if not defwin then return end
+	defwin.set_dark_mode(enable)
+	if enable then
+		gui.animate(gui.get_node("darkmode_icon_1"), "color", WHITE, LINEAR, 0.1)
+		gui.animate(gui.get_node("darkmode_icon_2"), "color", BLUE,  LINEAR, 0.1)
+	else
+		gui.animate(gui.get_node("darkmode_icon_1"), "color", BLUE,  LINEAR, 0.1)
+		gui.animate(gui.get_node("darkmode_icon_2"), "color", WHITE, LINEAR, 0.1)
+	end
+end
+
+-- Set light mode
+function buttons.darkmode_1()
+	if not defwin then return end
+	apply_dark_mode(false)
+	defwin.stop_flash()
+	defwin.flash(false, true, 1)
+end
+
+-- Set dark mode
+function buttons.darkmode_2()
+	if not defwin then return end
+	apply_dark_mode(true)
+	defwin.stop_flash()
+	defwin.flash(false, true, 1)
+end
+
+-- Set corner not rounded
+function buttons.corner_1()
+	if not defwin then return end
+	defwin.set_corners_not_rounded()
+	gui.animate(gui.get_node("corner_icon_1"), "color", BLUE, LINEAR, 0.1)
+	gui.animate(gui.get_node("corner_icon_2"), "color", WHITE,  LINEAR, 0.1)
+	gui.animate(gui.get_node("corner_icon_3"), "color", WHITE, LINEAR, 0.1)
+end
+
+-- Set corner slightly rounded
+function buttons.corner_2()
+	if not defwin then return end
+	defwin.set_corners_rounded_small()
+	gui.animate(gui.get_node("corner_icon_1"), "color", WHITE, LINEAR, 0.1)
+	gui.animate(gui.get_node("corner_icon_2"), "color", BLUE,  LINEAR, 0.1)
+	gui.animate(gui.get_node("corner_icon_3"), "color", WHITE, LINEAR, 0.1)
+end
+
+-- Set corner fully rounded
+function buttons.corner_3()
+	if not defwin then return end
+	defwin.set_corners_rounded()
+	gui.animate(gui.get_node("corner_icon_1"), "color", WHITE, LINEAR, 0.1)
+	gui.animate(gui.get_node("corner_icon_2"), "color", WHITE, LINEAR, 0.1)
+	gui.animate(gui.get_node("corner_icon_3"), "color", BLUE,  LINEAR, 0.1)
+end
+
+-- Set window layout to left-to-right
+function buttons.rtl_1()
+	defwin.set_rtl_layout(false)
+	gui.animate(gui.get_node("rtl_text_1"), "color", BLUE,  LINEAR, 0.1)
+	gui.animate(gui.get_node("rtl_text_2"), "color", WHITE, LINEAR, 0.1)
+end
+
+-- Set window layout to right-to-left
+function buttons.rtl_2()
+	defwin.set_rtl_layout(true)
+	gui.animate(gui.get_node("rtl_text_1"), "color", WHITE, LINEAR, 0.1)
+	gui.animate(gui.get_node("rtl_text_2"), "color", BLUE,  LINEAR, 0.1)
+end
+
+-- Make the progress bar load and progress
+function buttons.progress_1()
+	defwin.set_progress_load()
+	progress_handle = timer.delay(1, false, function()
+		defwin.set_progress(0.25)
+		progress_handle = timer.delay(1, false, function()
+			defwin.set_progress(0.5)
+			progress_handle = timer.delay(1, false, function()
+				defwin.set_progress(0.75)
+				progress_handle = timer.delay(1, false, function()
+					defwin.set_progress(1.0)
+					defwin.flash(true, false, 1)
+					progress_handle = timer.delay(2, false, function()
+						defwin.hide_progress()
+					end)
+				end)
+			end)
+		end)
+	end)
+end
+
+-- Cancel the progress bar
+function buttons.progress_2()
+	if progress_handle then
+		timer.cancel(progress_handle)
+		progress_handle = nil
+		defwin.set_progress_error()
+	else
+		defwin.hide_progress()
+	end
+end
+
+-- Set caption color to default
+function buttons.caption_color_1()
+	defwin.set_caption_color()
+end
+
+-- Set caption color to red
+function buttons.caption_color_2()
+	defwin.set_caption_color(1, 0, 0)
+end
+
+-- Set caption color to green
+function buttons.caption_color_3()
+	defwin.set_caption_color(0, 1, 0)
+end
+
+-- Set caption color to red
+function buttons.caption_color_4()
+	defwin.set_caption_color(0, 0, 1)
+end
+
+-- Set caption text color to default
+function buttons.caption_text_color_1()
+	defwin.set_caption_text_color()
+end
+
+-- Set caption text color to red
+function buttons.caption_text_color_2()
+	defwin.set_caption_text_color(1, 0, 0)
+end
+
+-- Set caption text color to green
+function buttons.caption_text_color_3()
+	defwin.set_caption_text_color(0, 1, 0)
+end
+
+-- Set caption text color to blue
+function buttons.caption_text_color_4()
+	defwin.set_caption_text_color(0, 0, 1)
+end
+
+-- Set border color to default
+function buttons.border_color_1()
+	defwin.set_border_color()
+end
+
+-- Set border color to red
+function buttons.border_color_2()
+	defwin.set_border_color(1, 0, 0)
+end
+
+-- Set border color to green
+function buttons.border_color_3()
+	defwin.set_border_color(0, 1, 0)
+end
+
+-- Set border color to blue
+function buttons.border_color_4()
+	defwin.set_border_color(0, 0, 1)
+end
+
+-- Set border color to transparent
+function buttons.border_color_5()
+	defwin.set_border_color_none()
+end
+
+-- Set border color to transparent
+function buttons.music_1()
+	sound.stop("/example#music")
+	sound.play("/example#music")
+end
+
+local function pick_option(id, option, n)
+	for i = 1, n do
+		local node = gui.get_node(id.."_"..i.."/picked")
+		local to = i == option and 1 or 0
+		gui.animate(node, "color.w", to, LINEAR, 0.15)
+	end
+	buttons[id.."_"..option]()
+end
+
+local function check_options(id, n, x, y)
+	for i = 1, n do
+		if gui.pick_node(gui.get_node(id.."_"..i.."/click"), x, y) then
+			pick_option(id, i, n)
+			return true
+		end
+	end
+end
+
+local function check_buttons(id, n, x, y)
+	for i = 1, n do
+		if gui.pick_node(gui.get_node(id.."_"..i), x, y) then
+			buttons[id.."_"..i]()
+			return true
+		end
+	end
+end
+
+local function check_slider(x, y, dx, sx, pressed)
+	local node = gui.get_node("slider_handle")
+	if pressed then
+		slider_pressed = gui.pick_node(gui.get_node("slider_area"), x, y)
+	end
+	if slider_pressed then
+		local min = gui.get_screen_position(gui.get_node("slider_min"))
+		local max = gui.get_screen_position(gui.get_node("slider_max"))
+		local screen_position = gui.get_screen_position(node)
+		if sx < min.x then
+			screen_position.x = min.x
+		elseif sx > max.x then
+			screen_position.x = max.x
+		else
+			screen_position.x = sx
+		end
+		gui.set_screen_position(node, screen_position)
+		local value = (screen_position.x - min.x) / (max.x - min.x)
+		local alpha = 0.2 + 0.8 * value
+		defwin.set_alpha(alpha)
+		return true
+	end
+end
+
+function init(self)
+	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
+	msg.post(".", "acquire_input_focus")
+	pick_option("aspect_ratio", 1, 4)
+	pick_option("close", 1, 4)
+	local dark_mode_preference = defwin.get_dark_mode_preference()
+	if dark_mode_preference ~= nil then
+		apply_dark_mode(dark_mode_preference)
+	end
+
+	gui.set_color(gui.get_node("drag"), defwin.get_caption_color())
+end
+
+function on_input(self, action_id, action)
+	if popup then
+		if action_id == hash("touch") and action.pressed then
+			if gui.pick_node(gui.get_node("popup"), action.x, action.y) then
+				if gui.pick_node(gui.get_node("popup_yes"), action.x, action.y) then
+					defwin.quit()
+				elseif gui.pick_node(gui.get_node("popup_no"), action.x, action.y) then
+					close_popup()
+				end
+			else
+				close_popup()
+			end
+		end
+		return
+	end
+	if action_id == hash("touch") then
+		if check_slider(action.x, action.y, action.dx, action.screen_x, action.pressed) then return end
+		if action.pressed then
+			if check_options("aspect_ratio", 4, action.x, action.y) then return end
+			if check_options("close", 4, action.x, action.y) then return end
+			if check_buttons("flash", 2, action.x, action.y) then return end
+			if check_buttons("transparency", 2, action.x, action.y) then return end
+			if check_buttons("darkmode", 2, action.x, action.y) then return end
+			if check_buttons("corner", 3, action.x, action.y) then return end
+			if check_buttons("progress", 2, action.x, action.y) then return end
+			if check_buttons("rtl", 2, action.x, action.y) then return end
+			if check_buttons("caption_text_color", 4, action.x, action.y) then return end
+			if check_buttons("caption_color", 4, action.x, action.y) then return end
+			if check_buttons("border_color", 5, action.x, action.y) then return end
+			if check_buttons("music", 1, action.x, action.y) then return end
+			if gui.pick_node(gui.get_node("drag"), action.x, action.y) then
+				defwin.start_drag()
+			end
+			if gui.pick_node(gui.get_node("close_button"), action.x, action.y) then
+				defwin.request_quit()
+			end
+		end
+		defwin.update_drag()
+		if action.released then
+			defwin.stop_drag()
+		end
+	elseif action_id == hash("space") and action.pressed then
+		defwin.fit_screen()
+	end
+end

@@ -1,0 +1,1878 @@
+script: "/example/example.gui_script"
+fonts {
+  name: "font"
+  font: "/example/font.font"
+}
+textures {
+  name: "gui"
+  texture: "/example/assets/gui.atlas"
+}
+nodes {
+  position {
+    x: 455.0
+    y: 607.0
+  }
+  size {
+    x: 850.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.5019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "drag"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -403.0
+  }
+  scale {
+    x: 0.666667
+    y: 0.666667
+  }
+  type: TYPE_BOX
+  texture: "gui/drag_indicator"
+  id: "drag_indicator"
+  parent: "drag"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -375.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 800.0
+    y: 80.0
+  }
+  type: TYPE_TEXT
+  text: "Drag this bar"
+  font: "font"
+  id: "drag_text"
+  pivot: PIVOT_W
+  parent: "drag"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 450.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.5019608
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "close_button"
+  parent: "drag"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  type: TYPE_BOX
+  texture: "gui/close"
+  id: "close_button_icon"
+  parent: "close_button"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 30.0
+    y: 520.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "aspect_ratio"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    y: 40.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_BOX
+  texture: "gui/resize"
+  id: "aspect_ratio_icon"
+  parent: "aspect_ratio"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 25.0
+    y: 40.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 700.0
+    y: 50.0
+  }
+  type: TYPE_TEXT
+  text: "Resize on border:"
+  font: "font"
+  id: "aspect_ratio_text"
+  pivot: PIVOT_W
+  parent: "aspect_ratio"
+  inherit_alpha: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "aspect_ratio_1"
+  parent: "aspect_ratio"
+  inherit_alpha: true
+  template: "/example/option.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_1/option"
+  parent: "aspect_ratio_1"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_1/button"
+  parent: "aspect_ratio_1/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_1/picked"
+  parent: "aspect_ratio_1/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Lock aspect ratio to config"
+  id: "aspect_ratio_1/text"
+  parent: "aspect_ratio_1/option"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_1/click"
+  parent: "aspect_ratio_1/option"
+  template_node_child: true
+}
+nodes {
+  position {
+    y: -50.0
+  }
+  type: TYPE_TEMPLATE
+  id: "aspect_ratio_2"
+  parent: "aspect_ratio"
+  inherit_alpha: true
+  template: "/example/option.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_2/option"
+  parent: "aspect_ratio_2"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_2/button"
+  parent: "aspect_ratio_2/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_2/picked"
+  parent: "aspect_ratio_2/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Lock aspect ratio to current"
+  id: "aspect_ratio_2/text"
+  parent: "aspect_ratio_2/option"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_2/click"
+  parent: "aspect_ratio_2/option"
+  template_node_child: true
+}
+nodes {
+  position {
+    y: -100.0
+  }
+  type: TYPE_TEMPLATE
+  id: "aspect_ratio_3"
+  parent: "aspect_ratio"
+  inherit_alpha: true
+  template: "/example/option.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_3/option"
+  parent: "aspect_ratio_3"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_3/button"
+  parent: "aspect_ratio_3/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_3/picked"
+  parent: "aspect_ratio_3/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Lock aspect ratio to square"
+  id: "aspect_ratio_3/text"
+  parent: "aspect_ratio_3/option"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_3/click"
+  parent: "aspect_ratio_3/option"
+  template_node_child: true
+}
+nodes {
+  position {
+    y: -150.0
+  }
+  type: TYPE_TEMPLATE
+  id: "aspect_ratio_4"
+  parent: "aspect_ratio"
+  inherit_alpha: true
+  template: "/example/option.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_4/option"
+  parent: "aspect_ratio_4"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_4/button"
+  parent: "aspect_ratio_4/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_4/picked"
+  parent: "aspect_ratio_4/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Unlock aspect ratio"
+  id: "aspect_ratio_4/text"
+  parent: "aspect_ratio_4/option"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "aspect_ratio_4/click"
+  parent: "aspect_ratio_4/option"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 524.0
+    y: 520.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "close"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    y: 40.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_BOX
+  texture: "gui/cancel"
+  id: "close_icon"
+  parent: "close"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 25.0
+    y: 40.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 700.0
+    y: 50.0
+  }
+  type: TYPE_TEXT
+  text: "Close button:"
+  font: "font"
+  id: "close_text"
+  pivot: PIVOT_W
+  parent: "close"
+  inherit_alpha: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "close_1"
+  parent: "close"
+  inherit_alpha: true
+  template: "/example/option.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_1/option"
+  parent: "close_1"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_1/button"
+  parent: "close_1/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_1/picked"
+  parent: "close_1/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Popup on close"
+  id: "close_1/text"
+  parent: "close_1/option"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_1/click"
+  parent: "close_1/option"
+  template_node_child: true
+}
+nodes {
+  position {
+    y: -50.0
+  }
+  type: TYPE_TEMPLATE
+  id: "close_2"
+  parent: "close"
+  inherit_alpha: true
+  template: "/example/option.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_2/option"
+  parent: "close_2"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_2/button"
+  parent: "close_2/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_2/picked"
+  parent: "close_2/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Delay and fadeout on close"
+  id: "close_2/text"
+  parent: "close_2/option"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_2/click"
+  parent: "close_2/option"
+  template_node_child: true
+}
+nodes {
+  position {
+    y: -100.0
+  }
+  type: TYPE_TEMPLATE
+  id: "close_3"
+  parent: "close"
+  inherit_alpha: true
+  template: "/example/option.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_3/option"
+  parent: "close_3"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_3/button"
+  parent: "close_3/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_3/picked"
+  parent: "close_3/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Quit on close"
+  id: "close_3/text"
+  parent: "close_3/option"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_3/click"
+  parent: "close_3/option"
+  template_node_child: true
+}
+nodes {
+  position {
+    y: -150.0
+  }
+  type: TYPE_TEMPLATE
+  id: "close_4"
+  parent: "close"
+  inherit_alpha: true
+  template: "/example/option.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_4/option"
+  parent: "close_4"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_4/button"
+  parent: "close_4/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_4/picked"
+  parent: "close_4/option"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Disable close button"
+  id: "close_4/text"
+  parent: "close_4/option"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "close_4/click"
+  parent: "close_4/option"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 36.0
+    y: 297.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "opacity"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    y: 40.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_BOX
+  texture: "gui/opacity"
+  id: "opacity_icon"
+  parent: "opacity"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  enabled: false
+}
+nodes {
+  position {
+    x: 25.0
+    y: 40.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 700.0
+    y: 50.0
+  }
+  type: TYPE_TEXT
+  text: "Opacity:"
+  font: "font"
+  id: "opacity_text"
+  pivot: PIVOT_W
+  parent: "opacity"
+  inherit_alpha: true
+  enabled: false
+}
+nodes {
+  position {
+    y: -100.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "alpha_slider"
+  parent: "opacity"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 800.0
+    y: 80.0
+  }
+  type: TYPE_TEXT
+  text: "Window opacity:"
+  font: "font"
+  id: "slider_text"
+  pivot: PIVOT_W
+  parent: "alpha_slider"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 205.0
+    y: -38.0
+  }
+  size {
+    x: 400.0
+    y: 10.0
+  }
+  type: TYPE_BOX
+  id: "slider_bar"
+  parent: "alpha_slider"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 200.0
+  }
+  size {
+    x: 30.0
+    y: 30.0
+  }
+  color {
+    x: 0.0
+    y: 0.5019608
+  }
+  type: TYPE_BOX
+  id: "slider_handle"
+  parent: "slider_bar"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -200.0
+  }
+  type: TYPE_BOX
+  id: "slider_min"
+  parent: "slider_bar"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 200.0
+  }
+  type: TYPE_BOX
+  id: "slider_max"
+  parent: "slider_bar"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 425.0
+    y: 40.0
+  }
+  type: TYPE_BOX
+  id: "slider_area"
+  parent: "slider_bar"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 400.0
+    y: 40.0
+  }
+  color {
+    x: 0.26666668
+    y: 0.26666668
+    z: 0.26666668
+  }
+  type: TYPE_BOX
+  id: "transparency_1"
+  pivot: PIVOT_W
+  parent: "opacity"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 16.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 700.0
+    y: 50.0
+  }
+  type: TYPE_TEXT
+  text: "Start desktop widget mode"
+  font: "font"
+  id: "transparency_text_1"
+  pivot: PIVOT_W
+  parent: "transparency_1"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -50.0
+  }
+  size {
+    x: 400.0
+    y: 40.0
+  }
+  color {
+    x: 0.26666668
+    y: 0.26666668
+    z: 0.26666668
+  }
+  type: TYPE_BOX
+  id: "transparency_2"
+  pivot: PIVOT_W
+  parent: "opacity"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 16.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 700.0
+    y: 50.0
+  }
+  type: TYPE_TEXT
+  text: "End desktop widget mode"
+  font: "font"
+  id: "transparency_text_2"
+  pivot: PIVOT_W
+  parent: "transparency_2"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 18.0
+    y: 86.0
+  }
+  size {
+    x: 220.0
+    y: 40.0
+  }
+  color {
+    x: 0.26666668
+    y: 0.26666668
+    z: 0.26666668
+  }
+  type: TYPE_BOX
+  id: "music_1"
+  pivot: PIVOT_W
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 20.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_BOX
+  texture: "gui/play_circle"
+  id: "music_icon"
+  parent: "music_1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 50.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 300.0
+    y: 50.0
+  }
+  type: TYPE_TEXT
+  text: "Play music"
+  font: "font"
+  id: "music_text"
+  pivot: PIVOT_W
+  parent: "music_1"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -1.0
+    y: -28.0
+  }
+  scale {
+    x: 0.3
+    y: 0.3
+  }
+  size {
+    x: 700.0
+    y: 50.0
+  }
+  type: TYPE_TEXT
+  text: "(will fade out on close\n"
+  "if delay is set)"
+  font: "font"
+  id: "music_desc"
+  pivot: PIVOT_NW
+  parent: "music_1"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 282.0
+    y: 92.0
+  }
+  type: TYPE_BOX
+  id: "flash"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Flash:"
+  font: "font"
+  id: "flash_text"
+  pivot: PIVOT_W
+  parent: "flash"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 180.0
+  }
+  type: TYPE_BOX
+  id: "flash_buttons"
+  parent: "flash"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "flash_1"
+  parent: "flash_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_BOX
+  texture: "gui/warning"
+  id: "flash_icon_1"
+  parent: "flash_1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 70.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "flash_2"
+  parent: "flash_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  type: TYPE_BOX
+  texture: "gui/error"
+  id: "flash_icon_2"
+  parent: "flash_2"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 282.0
+    y: 32.0
+  }
+  type: TYPE_BOX
+  id: "progress"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Progress:"
+  font: "font"
+  id: "progress_text"
+  pivot: PIVOT_W
+  parent: "progress"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 180.0
+  }
+  type: TYPE_BOX
+  id: "progress_buttons"
+  parent: "progress"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "progress_1"
+  parent: "progress_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  type: TYPE_BOX
+  texture: "gui/download"
+  id: "progress_icon_1"
+  parent: "progress_1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 70.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "progress_2"
+  parent: "progress_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  type: TYPE_BOX
+  texture: "gui/stop_circle"
+  id: "progress_icon_2"
+  parent: "progress_2"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 600.0
+    y: 152.0
+  }
+  type: TYPE_BOX
+  id: "darkmode"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Dark mode:"
+  font: "font"
+  id: "darkmode_text"
+  pivot: PIVOT_W
+  parent: "darkmode"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 180.0
+  }
+  type: TYPE_BOX
+  id: "darkmode_buttons"
+  parent: "darkmode"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "darkmode_1"
+  parent: "darkmode_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  type: TYPE_BOX
+  texture: "gui/light_mode"
+  id: "darkmode_icon_1"
+  parent: "darkmode_1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 70.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "darkmode_2"
+  parent: "darkmode_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  type: TYPE_BOX
+  texture: "gui/dark_mode"
+  id: "darkmode_icon_2"
+  parent: "darkmode_2"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 600.0
+    y: 92.0
+  }
+  type: TYPE_BOX
+  id: "rtl"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "RTL:"
+  font: "font"
+  id: "rtl_text"
+  pivot: PIVOT_W
+  parent: "rtl"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 180.0
+  }
+  type: TYPE_BOX
+  id: "rtl_buttons"
+  parent: "rtl"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "rtl_1"
+  parent: "rtl_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 100.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "LTR"
+  font: "font"
+  id: "rtl_text_1"
+  parent: "rtl_1"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 70.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "rtl_2"
+  parent: "rtl_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 100.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "RTL"
+  font: "font"
+  id: "rtl_text_2"
+  parent: "rtl_2"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 600.0
+    y: 32.0
+  }
+  type: TYPE_BOX
+  id: "corners"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 180.0
+  }
+  type: TYPE_BOX
+  id: "corner_buttons"
+  parent: "corners"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "corner_1"
+  parent: "corner_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  type: TYPE_BOX
+  texture: "gui/corner_1"
+  id: "corner_icon_1"
+  parent: "corner_1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 70.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "corner_2"
+  parent: "corner_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  type: TYPE_BOX
+  texture: "gui/corner_2"
+  id: "corner_icon_2"
+  parent: "corner_2"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 140.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.3019608
+    y: 0.3019608
+    z: 0.3019608
+  }
+  type: TYPE_BOX
+  id: "corner_3"
+  parent: "corner_buttons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  type: TYPE_BOX
+  texture: "gui/corner_3"
+  id: "corner_icon_3"
+  parent: "corner_3"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Corners:"
+  font: "font"
+  id: "corners_text"
+  pivot: PIVOT_W
+  parent: "corners"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 349.0
+    y: 186.0
+  }
+  scale {
+    x: 1.2
+    y: 1.2
+  }
+  type: TYPE_BOX
+  id: "colors"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 271.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "caption_color"
+  parent: "colors"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.25
+    y: 0.25
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Caption:"
+  font: "font"
+  id: "caption_color_text"
+  pivot: PIVOT_W
+  parent: "caption_color"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 80.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  type: TYPE_BOX
+  id: "caption_color_1"
+  parent: "caption_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  texture: "gui/cancel"
+  id: "caption_color_close"
+  parent: "caption_color_1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 110.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "caption_color_2"
+  parent: "caption_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 140.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "caption_color_3"
+  parent: "caption_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 170.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+  }
+  type: TYPE_BOX
+  id: "caption_color_4"
+  parent: "caption_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 271.0
+    y: 60.0
+  }
+  type: TYPE_BOX
+  id: "caption_text_color"
+  parent: "colors"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.25
+    y: 0.25
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Text:"
+  font: "font"
+  id: "caption_text_color_text"
+  pivot: PIVOT_W
+  parent: "caption_text_color"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 80.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  type: TYPE_BOX
+  id: "caption_text_color_1"
+  parent: "caption_text_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  texture: "gui/cancel"
+  id: "caption_text_color_close"
+  parent: "caption_text_color_1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 110.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "caption_text_color_2"
+  parent: "caption_text_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 140.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "caption_text_color_3"
+  parent: "caption_text_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 170.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+  }
+  type: TYPE_BOX
+  id: "caption_text_color_4"
+  parent: "caption_text_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 271.0
+    y: 20.0
+  }
+  type: TYPE_BOX
+  id: "border_color"
+  parent: "colors"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.25
+    y: 0.25
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Border:"
+  font: "font"
+  id: "border_color_text"
+  pivot: PIVOT_W
+  parent: "border_color"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 80.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  type: TYPE_BOX
+  id: "border_color_1"
+  parent: "border_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  texture: "gui/cancel"
+  id: "border_color_close"
+  parent: "border_color_1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 110.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "border_color_2"
+  parent: "border_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 140.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "border_color_3"
+  parent: "border_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 170.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+  }
+  type: TYPE_BOX
+  id: "border_color_4"
+  parent: "border_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 200.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  }
+  type: TYPE_BOX
+  id: "border_color_5"
+  parent: "border_color"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.333333
+    y: 0.333333
+  }
+  type: TYPE_BOX
+  texture: "gui/opacity"
+  id: "border_color_icon"
+  parent: "border_color_5"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 480.0
+    y: 320.0
+  }
+  size {
+    x: 360.0
+    y: 130.0
+  }
+  color {
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  }
+  type: TYPE_BOX
+  id: "popup"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 30.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Do you want to quit?"
+  font: "font"
+  id: "popup_question"
+  parent: "popup"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -70.0
+    y: -25.0
+  }
+  size {
+    x: 120.0
+    y: 50.0
+  }
+  color {
+    x: 0.0
+    y: 0.2
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "popup_yes"
+  parent: "popup"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 240.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Yes"
+  font: "font"
+  id: "popup_yes_text"
+  parent: "popup_yes"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 70.0
+    y: -25.0
+  }
+  size {
+    x: 120.0
+    y: 50.0
+  }
+  color {
+    x: 0.2
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "popup_no"
+  parent: "popup"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 240.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "No"
+  font: "font"
+  id: "popup_no_text"
+  parent: "popup_no"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 480.0
+    y: 320.0
+  }
+  size {
+    x: 960.0
+    y: 640.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "black"
+  inherit_alpha: true
+  alpha: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
